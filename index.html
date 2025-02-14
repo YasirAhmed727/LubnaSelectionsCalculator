@@ -6,35 +6,90 @@
     <title>Calculator</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
             text-align: center;
-            margin: 50px;
         }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
         input {
-            margin: 100px;
-            padding: 80px;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
         button {
-            padding: 10px 15px;
-            background-color: blue;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
             color: white;
+            font-size: 16px;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
-            background-color: darkblue;
+            background-color: #0056b3;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: normal;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <h2>Percentage Calculator</h2>
-    <input type="number" id="y" placeholder="Enter The Price Which We are Selling"> <br>
-    <input type="number" id="a" placeholder="Enter The Percentage that you are adding"> <br>
-    <button onclick="calculateX()">Calculate X</button>
-    <h3 id="resultX"></h3>
-    <input type="number" id="x" placeholder="Enter the value which we get"> <br>
-    <button onclick="calculateZ()">Calculate Z</button>
-    <h3 id="resultZ"></h3>
+    <div class="container">
+        <h2>Percentage Calculator</h2>
+        
+        <input type="number" id="y" placeholder="Enter the price you're selling" />
+        <input type="number" id="a" placeholder="Enter the percentage you're adding" />
+        <button onclick="calculateX()">Calculate X</button>
+        <h3 id="resultX"></h3>
+        
+        <input type="number" id="x" placeholder="Enter the value you get" />
+        <button onclick="calculateZ()">Calculate Z</button>
+        <h3 id="resultZ"></h3>
+        
+        <div id="error" class="error"></div>
+    </div>
 
     <script>
         function calculateX() {
@@ -43,8 +98,10 @@
             if (!isNaN(y) && !isNaN(a) && a !== 0) {
                 let x = (y * 100) / a + 100;
                 document.getElementById('resultX').innerText = "X: " + x.toFixed(2);
+                document.getElementById('error').innerText = "";
             } else {
-                document.getElementById('resultX').innerText = "Please enter valid numbers (A should not be 0).";
+                document.getElementById('resultX').innerText = "";
+                document.getElementById('error').innerText = "Please enter valid numbers (A should not be 0).";
             }
         }
 
@@ -54,8 +111,10 @@
             if (!isNaN(y) && !isNaN(x) && y !== 0) {
                 let z = ((y - x) * 100) / y;
                 document.getElementById('resultZ').innerText = "Z: " + z.toFixed(2);
+                document.getElementById('error').innerText = "";
             } else {
-                document.getElementById('resultZ').innerText = "Please enter valid numbers (Y should not be 0).";
+                document.getElementById('resultZ').innerText = "";
+                document.getElementById('error').innerText = "Please enter valid numbers (Y should not be 0).";
             }
         }
     </script>
