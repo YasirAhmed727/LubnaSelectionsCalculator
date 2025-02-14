@@ -176,7 +176,7 @@
             let basePrice = parseFloat(document.getElementById('basePrice').value);
             let markupPercentage = parseFloat(document.getElementById('markupPercentage').value);
             if (!isNaN(basePrice) && !isNaN(markupPercentage)) {
-                let price = x + a%;
+                let price = basePrice + (basePrice * markupPercentage / 100);
                 document.getElementById('resultPrice').innerText = "Price: " + price.toFixed(2);
             } else {
                 document.getElementById('resultPrice').innerText = "Please enter valid numbers.";
