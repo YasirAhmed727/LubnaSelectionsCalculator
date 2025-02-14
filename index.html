@@ -96,7 +96,7 @@
             let y = parseFloat(document.getElementById('y').value);
             let a = parseFloat(document.getElementById('a').value);
             if (!isNaN(y) && !isNaN(a) && a !== 0) {
-                let x = (y * 100)/a+100;
+                let x = ((y * 100)/(a+100));
                 document.getElementById('resultX').innerText = "X: " + x.toFixed(2);
             } else {
                 document.getElementById('resultX').innerText = "Please enter valid numbers (A should not be 0).";
