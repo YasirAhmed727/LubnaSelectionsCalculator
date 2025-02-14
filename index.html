@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            margin: 10px;
+            padding: 8px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h2>Percentage Calculator</h2>
+    <input type="number" id="y" placeholder="Enter Y"> <br>
+    <input type="number" id="a" placeholder="Enter A"> <br>
+    <button onclick="calculateX()">Calculate X</button>
+    <h3 id="resultX"></h3>
+    <input type="number" id="x" placeholder="Enter X"> <br>
+    <button onclick="calculateZ()">Calculate Z</button>
+    <h3 id="resultZ"></h3>
+
+    <script>
+        function calculateX() {
+            let y = parseFloat(document.getElementById('y').value);
+            let a = parseFloat(document.getElementById('a').value);
+            if (!isNaN(y) && !isNaN(a) && a !== 0) {
+                let x = (y * 100) / a + 100;
+                document.getElementById('resultX').innerText = "X: " + x.toFixed(2);
+            } else {
+                document.getElementById('resultX').innerText = "Please enter valid numbers (A should not be 0).";
+            }
+        }
+
+        function calculateZ() {
+            let y = parseFloat(document.getElementById('y').value);
+            let x = parseFloat(document.getElementById('x').value);
+            if (!isNaN(y) && !isNaN(x) && y !== 0) {
+                let z = ((y - x) * 100) / y;
+                document.getElementById('resultZ').innerText = "Z: " + z.toFixed(2);
+            } else {
+                document.getElementById('resultZ').innerText = "Please enter valid numbers (Y should not be 0).";
+            }
+        }
+    </script>
+</body>
+</html>
