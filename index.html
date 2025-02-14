@@ -8,13 +8,33 @@
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
         }
 
+        /* Header Styling */
+        .header {
+            background-color: #000;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .header button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            border-radius: 5px;
+        }
+
+        .header button:hover {
+            background-color: #555;
+        }
+
+        /* Calculator Styling */
         .container {
             background-color: #fff;
             padding: 30px;
@@ -23,6 +43,7 @@
             width: 100%;
             max-width: 400px;
             text-align: center;
+            margin: 30px auto;
         }
 
         h2 {
@@ -76,8 +97,15 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Percentage Calculator</h2>
+    <!-- Header with Buttons -->
+    <div class="header">
+        <button onclick="showDiscountCalculator()">Discount Calculator</button>
+        <button onclick="showPriceCalculator()">Price Calculator</button>
+    </div>
+
+    <!-- Discount Calculator Container -->
+    <div id="discountCalculator" class="container">
+        <h2>Discount Calculator</h2>
         
         <input type="number" id="y" placeholder="Enter the price you're selling" />
         <input type="number" id="a" placeholder="Enter the percentage you're adding" />
@@ -91,26 +119,66 @@
         <div id="error" class="error"></div>
     </div>
 
-   <script>
+    <!-- Price Calculator Container (hidden by default) -->
+    <div id="priceCalculator" class="container" style="display: none;">
+        <h2>Price Calculator</h2>
+        
+        <input type="number" id="basePrice" placeholder="Enter Base Price" />
+        <input type="number" id="markupPercentage" placeholder="Enter Markup Percentage" />
+        <button onclick="calculatePrice()">Calculate Price</button>
+        <h3 id="resultPrice"></h3>
+    </div>
+
+    <script>
+        // Show Discount Calculator
+        function showDiscountCalculator() {
+            document.getElementById('discountCalculator').style.display = 'block';
+            document.getElementById('priceCalculator').style.display = 'none';
+        }
+
+        // Show Price Calculator
+        function showPriceCalculator() {
+            document.getElementById('priceCalculator').style.display = 'block';
+            document.getElementById('discountCalculator').style.display = 'none';
+        }
+
+        // Calculate X (Discount Calculator)
         function calculateX() {
             let y = parseFloat(document.getElementById('y').value);
             let a = parseFloat(document.getElementById('a').value);
             if (!isNaN(y) && !isNaN(a) && a !== 0) {
-                let x = ((y * 100)/(a+100));
+                let x = (y * 100) / a + 100;
                 document.getElementById('resultX').innerText = "X: " + x.toFixed(2);
+                document.getElementById('error').innerText = "";
             } else {
-                document.getElementById('resultX').innerText = "Please enter valid numbers (A should not be 0).";
+                document.getElementById('resultX').innerText = "";
+                document.getElementById('error').innerText = "Please enter valid numbers (A should not be 0).";
             }
         }
 
+        // Calculate Z (Discount Calculator)
         function calculateZ() {
             let y = parseFloat(document.getElementById('y').value);
             let x = parseFloat(document.getElementById('x').value);
             if (!isNaN(y) && !isNaN(x) && y !== 0) {
                 let z = ((y - x) * 100) / y;
                 document.getElementById('resultZ').innerText = "Z: " + z.toFixed(2);
+                document.getElementById('error').innerText = "";
             } else {
-                document.getElementById('resultZ').innerText = "Please enter valid numbers (Y should not be 0).";
+                document.getElementById('resultZ').innerText = "";
+                document.getElementById('error').innerText = "Please enter valid numbers (Y should not be 0).";
+            }
+        }
+
+        // Calculate Price (Price Calculator)
+        function calculatePrice() {
+            let basePrice = parseFloat(document.getElementById('basePrice').value);
+            let markupPercentage = parseFloat(document.getElementById('markupPercentage').value);
+            if (!isNaN(basePrice) && !isNaN(markupPercentage)) {
+                let price = basePrice + (basePrice * markupPercentage / 100);
+                document.getElementById('resultPrice').innerText = "Price: " + price.toFixed(2);
+            } else {
+                document.getElementById('resultPrice').innerText = "Please enter valid numbers.";
             }
         }
     </script>
