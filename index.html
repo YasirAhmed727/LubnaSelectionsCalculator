@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Calculator</title>
     <style>
-        /* Base styles for mobile devices */
+        /* Base styles for all devices */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
             margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         /* Header Styling */
         .header {
             background-color: #000;
             color: white;
-            padding: 10px 30px;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .header button {
@@ -30,6 +38,7 @@
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
         .header button:hover {
@@ -39,13 +48,13 @@
         /* Calculator Styling */
         .container {
             background-color: #fff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
+            width: 90%;
+            max-width: 500px;
             text-align: center;
-            margin: 30px auto;
+            margin: 20px auto;
         }
 
         h2 {
@@ -62,6 +71,7 @@
             border: 2px solid #ddd;
             border-radius: 5px;
             box-sizing: border-box;
+            transition: border-color 0.3s ease;
         }
 
         input:focus {
@@ -95,12 +105,13 @@
         .error {
             color: red;
             font-size: 14px;
+            margin-top: 10px;
         }
 
         /* Mobile devices: up to 600px */
         @media screen and (max-width: 600px) {
             .container {
-                padding: 15px;
+                padding: 20px;
                 max-width: 100%;
             }
 
@@ -131,8 +142,8 @@
         /* Tablet devices: between 600px and 900px */
         @media screen and (min-width: 601px) and (max-width: 900px) {
             .container {
-                padding: 20px;
-                max-width: 90%;
+                padding: 25px;
+                max-width: 80%;
             }
 
             .header {
@@ -163,7 +174,7 @@
         @media screen and (min-width: 901px) {
             .container {
                 padding: 30px;
-                max-width: 600px; /* You can adjust this as needed */
+                max-width: 600px;
             }
 
             .header {
